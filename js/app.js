@@ -4,6 +4,7 @@
 
 var list = document.querySelector('.deck');
 var restart = document.getElementsByClassName('restart');
+//Restart button
 restart[0].addEventListener('click', function(event) {
     nodes = Array.prototype.slice.call(list.children);
     nodes = shuffle(nodes);
@@ -19,15 +20,14 @@ restart[0].addEventListener('click', function(event) {
         nodes[i].classList.remove('match');
         ++i;
     }
+    //Fade out stars become full stars
     fullstars = 5;
     for (var c = 4; c >= 0; c--) {
-        //    console.log(stars[c]);
         if(stars[c].classList.contains('fa-star-o')) {
             stars[c].classList.remove('fa-star-o');
         }
 
     }
-    //   console.log(stars[0].className -=('fa-star-0'));
 });
 
 /*
@@ -72,6 +72,7 @@ var fullstars = 5;
 var stars = document.getElementsByClassName('fa-star');
 var firstCard = "";
 var cards = document.querySelectorAll(".card");
+//Count number of moves and add/removes classes on success/fail
 for(var x = 0; x < cards.length; x++) {
     cards[x].addEventListener('click', function(event) {
         number += 1;
@@ -80,8 +81,9 @@ for(var x = 0; x < cards.length; x++) {
         var open = document.querySelectorAll(".open").length;
         if(open != 0 && open % 2 == 0) {
             // DO noting 
-        } else {
+        } else {//Opens card
             event.path[0].className += (' open show');
+            //if card with class open already assigned go throw matching algoritm, else assign it to firstCard
             if(document.querySelectorAll(".show").length > 1) {
                 if(firstCard.path[0].childNodes[1].className == event.path[0].childNodes[1].className) {
                     event.path[0].className += (' match');
@@ -111,11 +113,13 @@ for(var x = 0; x < cards.length; x++) {
         }
     })
 }
+//Count number of moves
 function count(num) {
     var moves = document.getElementsByClassName('moves')[0];
     moves.innerHTML = num;
     number = num;
 }
+//After 17 moves adds class to fade out a star
 function star(number) {
     if(number % 17 == 0) {
         if(fullstars > 0) {
