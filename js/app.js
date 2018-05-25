@@ -71,6 +71,7 @@ number = 0;
 var fullstars = 5;
 var stars = document.getElementsByClassName('fa-star');
 var firstCard = "";
+var match = 0;
 var cards = document.querySelectorAll(".card");
 //Count number of moves and add/removes classes on success/fail
 for(var x = 0; x < cards.length; x++) {
@@ -92,6 +93,9 @@ for(var x = 0; x < cards.length; x++) {
                     firstCard.path[0].classList.remove('show');
                     event.path[0].classList.remove('show');
                     event.path[0].classList.remove('open');
+					match += 1;
+					console.log(match)
+					matched(match);
                 }
                 else {
                     event.path[0].className += (' incorrect');
@@ -113,12 +117,18 @@ for(var x = 0; x < cards.length; x++) {
         }
     })
 }
+//Check how many cards matched
+function matched(match) {
+	if (match == 8){
+	alert("Congrats!!!")
+	};
+};
 //Count number of moves
 function count(num) {
     var moves = document.getElementsByClassName('moves')[0];
     moves.innerHTML = num;
     number = num;
-}
+};
 //After 17 moves adds class to fade out a star
 function star(number) {
     if(number % 17 == 0) {
