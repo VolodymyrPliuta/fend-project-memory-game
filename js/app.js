@@ -9,6 +9,8 @@ restart[0].addEventListener('click', function(event) {
     nodes = Array.prototype.slice.call(list.children);
     nodes = shuffle(nodes);
     count(0);
+    match = 0;
+    second = 0;
     var i = 0;
     while(i < nodes.length)
     {
@@ -72,6 +74,7 @@ var fullstars = 5;
 var stars = document.getElementsByClassName('fa-star');
 var firstCard = "";
 var match = 0;
+var second = 0;
 var cards = document.querySelectorAll(".card");
 //Count number of moves and add/removes classes on success/fail
 for(var x = 0; x < cards.length; x++) {
@@ -80,6 +83,8 @@ for(var x = 0; x < cards.length; x++) {
         count(number);
         star(number);
         var open = document.querySelectorAll(".open").length;
+        //Call time function if second = 0
+        if (second == 0){time()};
         if(open != 0 && open % 2 == 0) {
             // DO noting 
         } else {//Opens card
@@ -94,7 +99,6 @@ for(var x = 0; x < cards.length; x++) {
                     event.path[0].classList.remove('show');
                     event.path[0].classList.remove('open');
 					match += 1;
-					console.log(match)
 					matched(match);
                 }
                 else {
@@ -117,12 +121,24 @@ for(var x = 0; x < cards.length; x++) {
         }
     })
 }
+//Time count
+var interval = null;
+function time() {
+    interval = setInterval(function() {
+    second++;
+    document.querySelector('.time').textContent = second + " seconds"
+    }, 1000);
+};
 //Check how many cards matched
 function matched(match) {
-	if (match == 8){
-	alert("Congrats!!!")
-	};
+    if (match == 8) {
+        clearInterval(interval);
+        setTimeout(function(){
+            document.querySelector('body').innerHTML = '<div class="container"><h1>U WON!!!</h1> <br/> <i class="fa fa-thumbs-up"></i><i class="fa fa-thumbs-up"></i><i class="fa fa-thumbs-up"></i></br><h3>It took you '+ second +' seconds</h3><h2>Stars ' + document.getElementsByClassName("stars") + '</h2> <input type="button" value="Play Again" onClick="document.location.reload()"</div>';
+        }, 200);
+    }
 };
+console.log(document.querySelector('body'))
 //Count number of moves
 function count(num) {
     var moves = document.getElementsByClassName('moves')[0];
