@@ -134,10 +134,26 @@ function time() {
 function matched(match) {
     if (match == 8) {
         clearInterval(interval);
-        setTimeout(function(){
-            document.querySelector('body').innerHTML = '<div class="container"><h1>U WON!!!</h1> <br/> <i class="fa fa-thumbs-up"></i><i class="fa fa-thumbs-up"></i><i class="fa fa-thumbs-up"></i></br><h3>It took you '+ second +' seconds</h3><h2>Stars ' + document.getElementsByClassName("stars") + '</h2> <input type="button" value="Play Again" onClick="document.location.reload()"</div>';
-        }, 200);
+        // setTimeout(function(){
+            congratulationEndOfTheGame();
+        // }, 200);
     }
+};
+function congratulationEndOfTheGame() {
+    // https://stackoverflow.com/a/6247331
+    document.querySelector('body').innerHTML =
+        '<div class="container">' +
+            '<h1>U WON!!!</h1>' +
+            '<br/>' +
+            '<i class="fa fa-thumbs-up"></i>' +
+            '<i class="fa fa-thumbs-up"></i>' +
+            '<i class="fa fa-thumbs-up"></i>' +
+            '</br>' +
+            '<h3>It took you '+ second +' seconds</h3>' +
+            '<h2>Stars ' + document.getElementsByClassName("stars") + '</h2>' +
+            '<input type="button" value="Play Again" onClick="document.location.reload()">' +
+        '</div>';
+
 };
 console.log(document.querySelector('body'))
 //Count number of moves
