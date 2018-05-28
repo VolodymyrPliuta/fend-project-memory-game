@@ -74,6 +74,7 @@ var fullstars = 5;
 var stars = document.getElementsByClassName('fa-star');
 var firstCard = "";
 var match = 0;
+var isClicked = false;
 var second = 0;
 var cards = document.querySelectorAll(".card");
 //Count number of moves and add/removes classes on success/fail
@@ -84,7 +85,7 @@ for(var x = 0; x < cards.length; x++) {
         star(number);
         var open = document.querySelectorAll(".open").length;
         //Call time function if second = 0
-        if (second == 0){time()};
+        if (!isClicked){time();isClicked = true;};
         if(open != 0 && open % 2 == 0) {
             // DO noting 
         } else {//Opens card
