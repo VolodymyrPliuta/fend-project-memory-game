@@ -85,6 +85,7 @@ h1 {
     background: #f85b3c;
     font-size: 33px;
 }
+
 /*
  * Styles for the Score Panel
  */
@@ -110,4 +111,21 @@ h1 {
 .score-panel .restart {
     float: right;
     cursor: pointer;
+}
+
+/*
+ * Media queries for mobile phones and tablets
+ */
+
+ @media only screen and (min-width: 384px) and (max-width: 462px) {
+   ul.deck {width: 100%; min-height: 90%}
+   .deck .card {height: 5rem; width: 5rem; margin-bottom: 3.2rem}
+}
+ @media only screen and (min-width: 327px) and (max-width: 383px) {
+   .deck .card {height: 5rem; width: 5rem; margin-bottom: 3.2rem}
+   ul.deck {width: 100%; min-height: 90%; padding: 4px}
+ }
+   @media only screen and (max-width: 326px) {
+   .deck .card {height: 4rem; width: 4rem; margin-bottom: 3.2rem}
+   ul.deck {width: 100%; min-height: 90%; padding: 4px}
 }
