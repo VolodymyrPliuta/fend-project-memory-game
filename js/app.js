@@ -54,7 +54,6 @@ var match = 0;
 var isClicked = false;
 var second = 0;
 var cards = document.querySelectorAll(".card");
-var finishStar = winStars(fullstars);
 //Count number of moves and add/removes classes on success/fail
 mix();
 for(var x = 0; x < cards.length; x++) {
@@ -129,9 +128,10 @@ function congratulationEndOfTheGame() {
         '<i class="fa fa-thumbs-up"></i>' +
         '</br>' +
         '<h3>It took you '+ second +' seconds</h3>' +
-        '<h2>Stars ' + fullstars  + '</h2>' +
+        '<h2 class="foobar">Stars ' + '</h2>' +
         '<input type="button" value="Play Again" onClick="document.location.reload()">' +
         '</div>';
+    document.querySelector('.foobar').appendChild(winStars(fullstars));
 
 };
 function mix() {
@@ -177,12 +177,13 @@ function star(number) {
     return fullstars;
 };
 function winStars(fullstars) {
-    var fragment = document.createDocumentFragment();
+    var fragment = document.createElement('div');
+    console.log(fullstars)
     for(var j = 0; j < fullstars; j++){
         var element
         element = document.createElement('i');
         element.className += "fa fa-star"; 
         fragment.appendChild(element);
     }
-    return document.body.appendChild(fragment);
+    return fragment;
 };
