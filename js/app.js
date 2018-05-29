@@ -5,7 +5,7 @@
 var list = document.querySelector('.deck');
 var restart = document.getElementsByClassName('restart');
 //Restart button
-restart[0].addEventListener('click', function(event) {
+restart[0].addEventListener('click', function() {
     nodes = Array.prototype.slice.call(list.children);
     nodes = shuffle(nodes);
     count(0);
@@ -151,7 +151,7 @@ function congratulationEndOfTheGame() {
             '<i class="fa fa-thumbs-up"></i>' +
             '</br>' +
             '<h3>It took you '+ second +' seconds</h3>' +
-            '<h2>Stars ' + winStars() + '</h2>'
+            '<h2>Stars ' + fullstars  + '</h2>' +
             '<input type="button" value="Play Again" onClick="document.location.reload()">' +
         '</div>';
 
@@ -173,13 +173,13 @@ function star(number) {
     }
     return fullstars;
 };
-   function winStars(fullstars) {
-        var fragment = document.createDocumentFragment();
-        for(var j = 0; j < fullstars; j++){
-            var element
-            element = document.createElement('i');
-            element.className += "fa fa-star"; 
-            fragment.appendChild(element);
-        }
-          return document.body.appendChild(fragment);
-    };
+function winStars(fullstars) {
+    var fragment = document.createDocumentFragment();
+    for(var j = 0; j < fullstars; j++){
+        var element
+        element = document.createElement('i');
+        element.className += "fa fa-star"; 
+        fragment.appendChild(element);
+    }
+      return document.body.appendChild(fragment);
+};
