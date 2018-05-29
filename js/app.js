@@ -6,30 +6,7 @@ var list = document.querySelector('.deck');
 var restart = document.getElementsByClassName('restart');
 //Restart button
 restart[0].addEventListener('click', function() {
-    nodes = Array.prototype.slice.call(list.children);
-    nodes = shuffle(nodes);
-    count(0);
-    match = 0;
-    second = 0;
-    var i = 0;
-    while(i < nodes.length)
-    {
-        list.appendChild(nodes[i]);
-        //Flip all cards upside down
-        nodes[i].classList.remove('open');
-        nodes[i].classList.remove('show');
-        nodes[i].classList.remove('incorrect');
-        nodes[i].classList.remove('match');
-        ++i;
-    }
-    //Fade out stars become full stars
-    fullstars = 5;
-    for (var c = 4; c >= 0; c--) {
-        if(stars[c].classList.contains('fa-star-o')) {
-            stars[c].classList.remove('fa-star-o');
-        }
-
-    }
+    mix()
 });
 
 /*
@@ -79,13 +56,14 @@ var second = 0;
 var cards = document.querySelectorAll(".card");
 var finishStar = winStars(fullstars);
 //Count number of moves and add/removes classes on success/fail
+mix();
 for(var x = 0; x < cards.length; x++) {
     cards[x].addEventListener('click', function(event) {
         number += 1;
         count(number);
         star(number);
         var open = document.querySelectorAll(".open").length;
-        //Call time function if second = 0
+        //Call time function if true
         if (!isClicked){time();isClicked = true;};
         if(open != 0 && open % 2 == 0) {
             // DO noting 
@@ -100,8 +78,8 @@ for(var x = 0; x < cards.length; x++) {
                     firstCard.path[0].classList.remove('show');
                     event.path[0].classList.remove('show');
                     event.path[0].classList.remove('open');
-					match += 1;
-					matched(match);
+                    match += 1;
+                    matched(match);
                 }
                 else {
                     event.path[0].className += (' incorrect');
@@ -127,8 +105,8 @@ for(var x = 0; x < cards.length; x++) {
 var interval = null;
 function time() {
     interval = setInterval(function() {
-    second++;
-    document.querySelector('.time').textContent = second + " seconds"
+        second++;
+        document.querySelector('.time').textContent = second + " seconds"
     }, 1000);
 };
 //Check how many cards matched
@@ -136,7 +114,7 @@ function matched(match) {
     if (match == 8) {
         clearInterval(interval);
         // setTimeout(function(){
-            congratulationEndOfTheGame();
+        congratulationEndOfTheGame();
         // }, 200);
     }
 };
@@ -144,19 +122,44 @@ function congratulationEndOfTheGame() {
     // https://stackoverflow.com/a/6247331
     document.querySelector('body').innerHTML =
         '<div class="container">' +
-            '<h1>U WON!!!</h1>' +
-            '<br/>' +
-            '<i class="fa fa-thumbs-up"></i>' +
-            '<i class="fa fa-thumbs-up"></i>' +
-            '<i class="fa fa-thumbs-up"></i>' +
-            '</br>' +
-            '<h3>It took you '+ second +' seconds</h3>' +
-            '<h2>Stars ' + fullstars  + '</h2>' +
-            '<input type="button" value="Play Again" onClick="document.location.reload()">' +
+        '<h1>U WON!!!</h1>' +
+        '<br/>' +
+        '<i class="fa fa-thumbs-up"></i>' +
+        '<i class="fa fa-thumbs-up"></i>' +
+        '<i class="fa fa-thumbs-up"></i>' +
+        '</br>' +
+        '<h3>It took you '+ second +' seconds</h3>' +
+        '<h2>Stars ' + fullstars  + '</h2>' +
+        '<input type="button" value="Play Again" onClick="document.location.reload()">' +
         '</div>';
 
 };
-console.log(document.querySelector('body'))
+function mix() {
+    nodes = Array.prototype.slice.call(list.children);
+    nodes = shuffle(nodes);
+    count(0);
+    match = 0;
+    second = 0;
+    var i = 0;
+    while(i < nodes.length)
+    {
+        list.appendChild(nodes[i]);
+        //Flip all cards upside down
+        nodes[i].classList.remove('open');
+        nodes[i].classList.remove('show');
+        nodes[i].classList.remove('incorrect');
+        nodes[i].classList.remove('match');
+        ++i;
+    }
+    //Fade out stars become full stars
+    fullstars = 5;
+    for (var c = 4; c >= 0; c--) {
+        if(stars[c].classList.contains('fa-star-o')) {
+            stars[c].classList.remove('fa-star-o');
+        }
+
+    }
+}
 //Count number of moves
 function count(num) {
     var moves = document.getElementsByClassName('moves')[0];
@@ -181,5 +184,5 @@ function winStars(fullstars) {
         element.className += "fa fa-star"; 
         fragment.appendChild(element);
     }
-      return document.body.appendChild(fragment);
+    return document.body.appendChild(fragment);
 };
