@@ -25,3 +25,5 @@ Open index.html and you are all set for the game
 ## Contributing
 
 Any person should feel free to contribute to this project. All requests will be reviewed
+
+![matchGame](https://github.com/VolodymyrPliuta/fend-project-memory-game/blob/dev/img/matchingGame.png)
