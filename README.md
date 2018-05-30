@@ -3,7 +3,7 @@
 ## Table of Contents
 
 * [Instructions](#instructions)
-* [Instalation](#Instalation)
+* [Installation](#installation)
 * [Contributing](#contributing)
 
 ## Instructions
@@ -14,7 +14,7 @@ Number of moves and time is going to be displayed at the top of the screen
 
 At the End of the game you will see how many stars you get it a current game
 
-### Instalation
+### Installation
 
 run in your terminal
 
